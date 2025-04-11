@@ -1,0 +1,266 @@
+﻿/* 🌞 Светлая тема по умолчанию */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+header, footer {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+    header .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+nav a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+.hero {
+    background-color: #eee;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.library, .catalog {
+    padding: 40px 30px;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 180px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card h3 {
+        color: #950740;
+        font-size: 16px;
+        margin: 10px 0 4px;
+    }
+
+    .card p {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .card:hover {
+        border-color: #950740;
+        box-shadow: 0 0 10px rgba(149, 7, 64, 0.2);
+        transform: translateY(-3px);
+    }
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.reader {
+    text-align: center;
+    padding: 30px;
+}
+
+.navigation {
+    margin: 20px 0;
+}
+
+    .navigation button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+    }
+
+        .navigation button:hover {
+            background-color: #555;
+        }
+
+.manga-page img {
+    max-width: 90%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.genre-list {
+    margin-bottom: 30px;
+}
+
+    .genre-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .genre-list li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .genre-list a {
+        color: #0077cc;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .genre-list a:hover {
+            text-decoration: underline;
+        }
+
+header .logo a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* 🌞 Кнопки жанров */
+#genreFilters button {
+    background-color: #f0f0f0;
+    color: #950740;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+    #genreFilters button span {
+        display: inline-block;
+        transition: transform 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    #genreFilters button:hover {
+        background-color: #e8e8e8;
+        color: #C3073F;
+    }
+
+        #genreFilters button:hover span {
+            transform: scale(1.05);
+            text-shadow: 0 0 6px rgba(195, 7, 63, 0.3);
+        }
+
+    #genreFilters button.active {
+        background-color: #950740;
+        color: #fff;
+        border-color: #950740;
+        box-shadow: 0 0 8px rgba(199, 7, 63, 0.4);
+        transform: translateY(-1px);
+    }
+
+/* 🌙 Темная тема */
+body.dark {
+    background-color: #1A1A1D;
+    color: #E4E4E4;
+}
+
+    body.dark header,
+    body.dark footer {
+        background-color: #6F2232;
+        color: #E4E4E4;
+    }
+
+    body.dark .card {
+        background-color: #2c2c2f;
+        border: 1px solid #4E4E50;
+        color: #f5f5f5;
+        transition: 0.2s ease;
+    }
+
+        body.dark .card h3 {
+            color: #C3073F;
+            font-size: 16px;
+            margin: 10px 0 4px;
+        }
+
+        body.dark .card p {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        body.dark .card:hover {
+            border-color: #950740;
+            box-shadow: 0 0 10px rgba(199, 7, 63, 0.2);
+            transform: translateY(-3px);
+        }
+
+    body.dark #genreFilters button {
+        background-color: #2c2c2f !important;
+        color: #C3073F !important;
+        border: 1px solid #4E4E50;
+        border-radius: 6px;
+        padding: 8px 14px;
+        margin: 0 10px 10px 0;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+        body.dark #genreFilters button span {
+            display: inline-block;
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        body.dark #genreFilters button:hover {
+            background-color: #1A1A1D !important;
+            color: #F05C7F !important;
+        }
+
+            body.dark #genreFilters button:hover span {
+                transform: scale(1.05);
+                text-shadow: 0 0 6px rgba(195, 7, 63, 0.7);
+            }
+
+        body.dark #genreFilters button.active {
+            background-color: #950740 !important;
+            color: #fff !important;
+            border-color: #950740 !important;
+            box-shadow: 0 0 8px rgba(199, 7, 63, 0.4);
+            transform: translateY(-1px);
+        }
+
+    body.dark #searchInput {
+        background-color: #1A1A1D;
+        color: #fff;
+        border: 1px solid #4E4E50;
+    }

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чтение — Moji</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Moji</a></div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="about.html">О сайте</a>
+        </nav>
+    </header>
+
+    <main class="reader">
+        <h2 id="mangaTitle">Загрузка...</h2>
+
+        <div class="navigation">
+            <button onclick="prevPage()">< Назад</button>
+            <button onclick="nextPage()">Вперёд ></button>
+        </div>
+
+        <div class="manga-page">
+            <img id="mangaImage" src="" alt="Страница">
+            <p id="pageNumber">Страница 1</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Moji — Все права защищены</p>
+    </footer>
+
+    <script>
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const manga = urlParams.get('manga'); // Название манги
+        const chapter = urlParams.get('chapter') || '1'; // Номер главы (по умолчанию '1')
+
+        const mangaPages = {
+            'onepiece': [
+                'images/OnePieceManga/02.jpg',
+                'images/OnePieceManga/03.jpg',
+                'images/OnePieceManga/04.jpg'
+            ],
+            'naruto': [
+                'images/NarutoManga/01.jpg',
+                'images/NarutoManga/02.jpg',
+                'images/NarutoManga/03.jpg'
+            ],
+            'Berserk': [
+                'images/BerserkManga/01.jpg',
+                'images/BerserkManga/02.jpg',
+                'images/BerserkManga/03.jpg'
+            ],
+            'Vagabond': [
+                'images/VagabondManga/01.jpg',
+                'images/VagabondManga/02.jpg',
+                'images/VagabondManga/03.jpg'
+            ]
+            // Добавляй другие манги по аналогии
+        };
+
+        let currentPage = 0;
+
+        // Устанавливаем название манги и страницы
+        document.getElementById('mangaTitle').textContent = `${capitalizeFirstLetter(manga)} — Глава ${chapter}`;
+
+        // Загружаем страницы манги
+        const pages = mangaPages[manga] || [];
+        const titleEl = document.getElementById('mangaTitle');
+
+        if (pages.length === 0) {
+            titleEl.textContent = 'Манга не найдена';
+        } else {
+            titleEl.textContent = `${capitalizeFirstLetter(manga)} — Глава ${chapter}`;
+            showPage(); // вызываем только если манга существует
+        }
+
+
+        function showPage() {
+            const img = document.getElementById("mangaImage");
+            const label = document.getElementById("pageNumber");
+            img.src = pages[currentPage];
+            label.textContent = `Страница ${currentPage + 1}`;
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                showPage();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage();
+            }
+        }
+
+        // Преобразуем первую букву в заглавную
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // Инициализируем первую страницу
+        showPage();
+    </script>
+</body>
+</html>

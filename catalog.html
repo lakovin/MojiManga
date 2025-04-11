@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Каталог Манги — Moji</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Moji</a></div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="about.html">О сайте</a>
+        </nav>
+        <button id="themeToggle" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">🌙</button>
+    </header>
+
+    <main class="catalog">
+        <h2>Каталог Манги</h2>
+
+        <input type="text"
+               id="searchInput"
+               placeholder="Поиск по названию..."
+               style="width: 100%; max-width: 400px; padding: 10px; font-size: 16px; margin-bottom: 20px;" />
+
+        <!-- Кнопки жанров -->
+        <div id="genreFilters" style="margin-bottom: 20px;"></div>
+
+        <!-- Карточки -->
+        <div class="card-grid" id="catalogGrid"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Moji — Все права защищены</p>
+    </footer>
+
+    <script src="mangaData.js"></script>
+    <script>
+        const catalogGrid = document.getElementById("catalogGrid");
+        const searchInput = document.getElementById("searchInput");
+        const genreFilters = document.getElementById("genreFilters");
+        const themeToggle = document.getElementById("themeToggle");
+
+        let currentGenre = "Все";
+        let currentSearch = "";
+
+        // Применить сохранённую тему при загрузке
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            themeToggle.textContent = "☀️";
+        }
+
+        // Переключение темы
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            const isDark = document.body.classList.contains("dark");
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+
+        // Получаем все жанры из списка
+        const genreSet = new Set();
+        mangaList.forEach(m => m.genres.forEach(g => genreSet.add(g)));
+        const genres = ["Все", ...genreSet];
+
+        // Рендер кнопок жанров
+        genres.forEach(genre => {
+            const btn = document.createElement("button");
+            btn.textContent = genre;
+            btn.style.marginRight = "10px";
+            btn.style.marginBottom = "10px";
+            btn.style.padding = "8px 16px";
+            btn.style.border = "none";
+            btn.style.borderRadius = "6px";
+            btn.style.cursor = "pointer";
+            btn.style.background = "#eee";
+
+            btn.addEventListener("click", () => {
+                currentGenre = genre;
+                renderCards();
+            });
+
+            genreFilters.appendChild(btn);
+        });
+
+        // Рендер карточек
+        function renderCards() {
+            catalogGrid.innerHTML = "";
+
+            const filtered = mangaList.filter(manga => {
+                const matchTitle = manga.title.toLowerCase().includes(currentSearch);
+                const matchGenre = currentGenre === "Все" || manga.genres.includes(currentGenre);
+                return matchTitle && matchGenre;
+            });
+
+            filtered.forEach(manga => {
+                const card = document.createElement("a");
+                card.href = `reader.html?manga=${manga.code}&chapter=1`;
+                card.className = "card-link";
+                card.innerHTML = `
+                    <div class="card">
+                        <img src="${manga.image}" alt="${manga.title}">
+                        <h3>${manga.title}</h3>
+                        <p>${manga.genres.join(", ")}</p>
+                    </div>
+                `;
+                catalogGrid.appendChild(card);
+            });
+        }
+
+        // Обработчик поиска
+        searchInput.addEventListener("input", () => {
+            currentSearch = searchInput.value.toLowerCase();
+            renderCards();
+        });
+
+        // Первая отрисовка
+        renderCards();
+    </script>
+
+</body>
+</html>

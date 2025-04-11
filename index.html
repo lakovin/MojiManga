@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Moji — Читай Мангу</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Moji</a></div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="about.html">О сайте</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Добро пожаловать в Moji</h1>
+            <p>Читайте любимую мангу и комиксы онлайн</p>
+        </section>
+
+        <section class="library">
+            <h2>Популярное</h2>
+            <div class="card-grid" id="mainCardGrid"></div>
+        </section>  
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Moji — Все права защищены</p>
+    </footer>
+
+    <script src="mangaData.js"></script>
+    <script>
+        const mainCardGrid = document.getElementById("mainCardGrid");
+
+        const popularManga = mangaList.slice(0, 6); // показываем первые 6
+
+        popularManga.forEach(manga => {
+            const card = document.createElement("a");
+            card.href = `reader.html?manga=${manga.code}&chapter=1`;
+            card.className = "card-link";
+
+            card.innerHTML = `
+                    <div class="card">
+                        <img src="${manga.image}" alt="${manga.title}">
+                        <h3>${manga.title}</h3>
+                        <p>${manga.genres.join(", ")}</p>
+                    </div>
+                `;
+
+            mainCardGrid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
