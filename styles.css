@@ -1,5 +1,4 @@
-﻿/* 🌞 Светлая тема по умолчанию */
-body {
+﻿body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #f8f8f8;
@@ -264,3 +263,13 @@ body.dark {
         color: #fff;
         border: 1px solid #4E4E50;
     }
+    
+    body.dark .hero {
+        background-color: #2c2c2f;
+        color: #E4E4E4;
+    }
+
+        body.dark .hero h1,
+        body.dark .hero p {
+            color: #E4E4E4;
+        }

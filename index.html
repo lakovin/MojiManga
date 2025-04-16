@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moji — Читай Мангу</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,6 +14,7 @@
             <a href="catalog.html">Каталог</a>
             <a href="about.html">О сайте</a>
         </nav>
+        <button id="themeToggle" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">🌙</button>
     </header>
 
     <main>
@@ -24,24 +26,38 @@
         <section class="library">
             <h2>Популярное</h2>
             <div class="card-grid" id="mainCardGrid"></div>
-        </section>  
+        </section>
     </main>
 
-    <footer>
+    <footer style="text-align: center;">
         <p>&copy; 2025 Moji — Все права защищены</p>
     </footer>
 
     <script src="mangaData.js"></script>
     <script>
         const mainCardGrid = document.getElementById("mainCardGrid");
+        const themeToggle = document.getElementById("themeToggle");
 
+        // Применить сохранённую тему при загрузке
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            themeToggle.textContent = "☀️";
+        }
+
+        // Переключение темы
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            const isDark = document.body.classList.contains("dark");
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+
+        // Отображение популярных манг
         const popularManga = mangaList.slice(0, 6); // показываем первые 6
-
         popularManga.forEach(manga => {
             const card = document.createElement("a");
             card.href = `reader.html?manga=${manga.code}&chapter=1`;
             card.className = "card-link";
-
             card.innerHTML = `
                     <div class="card">
                         <img src="${manga.image}" alt="${manga.title}">
@@ -49,7 +65,6 @@
                         <p>${manga.genres.join(", ")}</p>
                     </div>
                 `;
-
             mainCardGrid.appendChild(card);
         });
     </script>
