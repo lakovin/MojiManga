@@ -38,7 +38,7 @@
         const mainCardGrid = document.getElementById("mainCardGrid");
         const themeToggle = document.getElementById("themeToggle");
 
-        // Применить сохранённую тему при загрузке
+        // Сохраненка
         if (localStorage.getItem("theme") === "dark") {
             document.body.classList.add("dark");
             themeToggle.textContent = "☀️";
@@ -53,7 +53,7 @@
         });
 
         // Отображение популярных манг
-        const popularManga = mangaList.slice(0, 6); // показываем первые 6
+        const popularManga = mangaList.slice(0, 6); 
         popularManga.forEach(manga => {
             const card = document.createElement("a");
             card.href = `reader.html?manga=${manga.code}&chapter=1`;
