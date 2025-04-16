@@ -15,13 +15,13 @@ const mangaList = [
     {
         code: "berserk",
         title: "Berserk",
-        image: "images/Berserk.jpg",
+        image: "images/berserk.jpg",
         genres: ["Сэйнен", "Дарк Фэнтези"]
     },
     {
         code: "vagabond",
         title: "Vagabond",
-        image: "images/Vagabond.jpg",
+        image: "images/vagabond.jpg",
         genres: ["Сэйнен", "Самурай"]
     },
     {
@@ -37,19 +37,19 @@ const mangaList = [
         genres: ["Сэйнен", "Мистика"]
     },
     {
-        code: "Punpun",
+        code: "punpun",
         title: "Goodnight, Punpun",
-        image: "images/Punpun.jpg",
+        image: "images/punpun.jpg",
         genres: ["Сэйнен", "Драма"]
     },
     {
         code: "homunculus",
         title: "Homunculus",
-        image: "images/Homunculus.jpg",
+        image: "images/homunculus.jpg",
         genres: ["Сэйнен", "Мистика"]
     },
     {
-        code: "Aot",
+        code: "aot",
         title: "Attack on Titan",
         image: "images/aot.jpg",
         genres: ["Сёнен", "Приключения"]
@@ -57,43 +57,43 @@ const mangaList = [
     {
         code: "bleach",
         title: "Bleach",
-        image: "images/Bleach.jpg",
+        image: "images/bleach.jpg",
         genres: ["Сёнен", "Фентези"]
     },
     {
-        code: "Deathnote",
+        code: "deathnote",
         title: "Death Note",
-        image: "images/Deathnote.jpg",
+        image: "images/deathnote.jpg",
         genres: ["Сэйнен", "Психология"]
     },
     {
-        code: "Demonslayer",
+        code: "demonslayer",
         title: "Demon Slayer",
         image: "images/demonslayer.jpg",
         genres: ["Сёнен", "Демоны"]
     },
     {
-        code: "Evangelion",
+        code: "evangelion",
         title: "Evangelion",
-        image: "images/Evangelion.jpg",
+        image: "images/evangelion.jpg",
         genres: ["Сэйнен", "Психология"]
     },
     {
-        code: "Firepunch",
+        code: "firepunch",
         title: "Fire Punch",
         image: "images/firepunch.jpg",
         genres: ["Сэйнен", "Приключения"]
     },
     {
-        code: "Monster",
+        code: "monster",
         title: "Monster",
-        image: "images/Monster.jpg",
+        image: "images/monster.jpg",
         genres: ["Сэйнен", "Психология"]
     },
     {
-        code: "Jujutsukaisen",
-        title: "jujutsu Kaisen",
-        image: "images/Jujutsukaisen.jpg",
+        code: "jujutsukaisen",
+        title: "Jujutsu Kaisen",
+        image: "images/jujutsukaisen.jpg",
         genres: ["Сёнен", "Мистика"]
-    },
+    }
 ];
