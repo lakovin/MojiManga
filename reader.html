@@ -19,54 +19,68 @@
 
     <main class="reader">
         <h2 id="mangaTitle">Загрузка...</h2>
-
         <div class="navigation">
             <button onclick="prevPage()">← Назад</button>
             <button onclick="nextPage()">Вперёд →</button>
         </div>
-
         <div class="manga-page">
             <img id="mangaImage" src="" alt="Страница">
             <p id="pageNumber">Страница 1</p>
         </div>
     </main>
-
     <footer style="text-align: center;">
         <p>&copy; 2025 Moji — Все права защищены</p>
     </footer>
-
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const manga = urlParams.get('manga');
         const chapter = urlParams.get('chapter') || '1';
 
-        const mangaPages = {
-            'onepiece': [
-                'images/OnePieceManga/02.jpg',
-                'images/OnePieceManga/03.jpg',
-                'images/OnePieceManga/04.jpg'
-            ],
-            'naruto': [
-                'images/NarutoManga/01.jpg',
-                'images/NarutoManga/02.jpg',
-                'images/NarutoManga/03.jpg'
-            ],
-            'Berserk': [
-                'images/BerserkManga/01.jpg',
-                'images/BerserkManga/02.jpg',
-                'images/BerserkManga/03.jpg'
-            ],
-            'Vagabond': [
-                'images/VagabondManga/01.jpg',
-                'images/VagabondManga/02.jpg',
-                'images/VagabondManga/03.jpg'
-            ]
-        };
+
+        function generateMangaPages() {
+
+            const mangaPages = {};
+
+            const mangaInfo = {
+                'onepiece': {
+                    path: 'images/OnePieceManga/{page}.jpg',
+                    pageCount: 77
+                },
+                'naruto': {
+                    path: 'images/NarutoManga/{page}.jpg',
+                    pageCount: 70
+                },
+                'berserk': {
+                    path: 'images/BerserkManga/{page}.jpg',
+                    pageCount: 50
+                },
+                'vagabond': {
+                    path: 'images/VagabondManga/{page}.jpg',
+                    pageCount: 60
+                }
+                
+            };
+
+            for (const [mangaCode, info] of Object.entries(mangaInfo)) {
+                mangaPages[mangaCode] = [];
+
+                for (let i = 1; i <= info.pageCount; i++) {
+                   
+                    const pageNumber = i < 10 ? `0${i}` : `${i}`;
+                    const pagePath = info.path.replace('{page}', pageNumber);
+                    mangaPages[mangaCode].push(pagePath);
+                }
+            }
+
+            return mangaPages;
+        }
+
+        // Создаем объект с путями к страницам манги
+        const mangaPages = generateMangaPages();
 
         let currentPage = 0;
-
         const titleEl = document.getElementById('mangaTitle');
-        const pages = mangaPages[manga] || [];
+        const pages = mangaPages[manga.toLowerCase()] || [];
 
         if (pages.length === 0) {
             titleEl.textContent = 'Манга не найдена';
